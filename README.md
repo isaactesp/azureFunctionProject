@@ -1,4 +1,4 @@
-We suppose that we have a suscription of Microsoft Cloud(Azure), in which we have the next resources:
+(Read in Code mode)We suppose that we have a suscription of Microsoft Cloud(Azure), in which we have the next resources:
   -Storage Account with a container.
   -Function App(where this project will be deployed)
   -OpenAI service
