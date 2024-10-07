@@ -172,7 +172,7 @@ def connection_to_data(myblob:func.InputStream):
         #Read the content of the blob
         blob_data=myblob.read().decode('utf-8')
         
-        #Convert the blob into a json
+        #Convert the blob into json format
         jsonData=json.loads(blob_data)
 
         return jsonData
@@ -183,7 +183,7 @@ def connection_to_data(myblob:func.InputStream):
     
 
 
-#From this Python function, we could the code creating another Azure Function,
+#From this Python function, we could divide the code creating another Azure Function,
 #one for the Step1(cleaning) and other for the Step2(summarizing)
 
 
@@ -319,7 +319,7 @@ def validate_summary_structure(summary_text):
 
     return valid
 
-#At this point we could create another Azure function to create the single response
+#At this point we could create another Azure function to create the single response(final summary) we are looking for,
 #which I have choosen to be a PDF because is the more general 
 
 def create_pdf_from_summary(summary_text, pdf_path):
@@ -347,9 +347,8 @@ def create_pdf_from_summary(summary_text, pdf_path):
         return None
     
 #We could create an extra Azure function just to decide what to do with the result,
-#in my case I have choosen creating a blob in the same container that THE INITIAL DATA WAS UPLOADED, which
-#produce this Azure Function to start
-
+#in my case I have choosen creating a blob in the same container that THE INITIAL DATA WAS UPLOADED
+                                           
 def upload_pdf_to_blob(container_name, blob_name, pdf_path):
     #PRE: pdf_path is the path of the pdf we have created, blob_name is the name of the blob in which
     #we want to save the pdf, container_name name is the name of the container in which will be allocated the blob with the pdf
