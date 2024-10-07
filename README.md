@@ -3,8 +3,8 @@
   -Function App(where this project will be deployed)
   -OpenAI service
 
-This Azure Function runs everytime that a file is uploaded in the container. The file is supposed to be in json 
-format, with data about many documents(part of the same "matter") that have been performed by an OCR, like the
+This Azure Function, developed with Python, runs everytime that a file is uploaded in the container. The file is supposed 
+to be in json format, with data about many documents(part of the same "matter") that have been performed by an OCR, like the
 following: 
 [
   {
@@ -37,7 +37,7 @@ following:
 The function will manage the blob(storage solution of Azure) of data and will create another blob in the same container. 
 This second blob will contain a pdf with a summary of the data by points.
 
-The Function of Azure(cleanerFunction()) is developed in 5 steps: 
+The Function of Azure(cleanerFunction()) is divided in 5 steps: 
   1.Clean the data(which includes connecting to the blob in which is the data). Functions:
     filter_of_confidence()
     filter_data_by_confidence()
