@@ -1,13 +1,14 @@
-<h1>Azure Function</h1>
+# Azure Function
 
-<h2>Context</h2>
+## Context
 
 #### We suppose that we have a suscription of Microsoft Cloud(Azure), in which we have the next resources:
 - Storage Account with a container.
 - Function App(where this project will be deployed).
 - OpenAI service.
 
-<h2>Specification</h2>
+## Specification
+
 #### This Azure Function, developed with Python, runs everytime that a file is uploaded in the container. The file is supposed to be in json format, with data about many documents(part of the same "matter") that have been performed by an OCR, like the following: 
 ```
 [
@@ -28,38 +29,33 @@
         "height": 11.6806,
         "unit": "inch",
         ...//words of page 2
-      },//more pages
+      },     //more pages
       {...}]
     },
     {
       "doc_id": 2,
-      ...//content doc 2
+      ...      //content doc 2
   },
-    ...//more documents
+    ...     //more documents
 ]
 ```
 
-#### The function will manage the blob(storage solution of Azure) of data and will create another blob in the same container. This second blob will contain a pdf with a summary of the data by points.
+#### The function will manage the blob(storage solution of Azure) of data that has been uploaded and will create another blob in the same container. This second blob will contain a pdf with a summary of the data by points.
 
-<h2>Inner functions</h2>
-#### The Function of Azure(cleanerFunction()) is divided in 5 steps: 
+## Inner functions
+
+#### The Function of Azure(`cleanerFunction()`) is divided in 5 steps: 
+
   1. Clean the data(which includes connecting to the blob in which is the data). Functions:
-    - filter_of_confidence()
-    - filter_data_by_confidence()
-    - clean_words()
-    - filter_of_stopwords()
-    - json_to_text_with_metadata()
-    - cleaner_of_data()
-    - connection_to_data()    
+`filter_of_confidence()`,`filter_data_by_confidence()`,`clean_words()`,`filter_of_stopwords()`,`json_to_text_with_metadata()`,`cleaner_of_data()`,`connection_to_data()`    
   2. Summarize the cleaned data(which includes connecting to the OpenAI resource). Functions:
-    - extract_documents_and_pages()
-    - summarize_with_openai()
+     `extract_documents_and_pages()`,`summarize_with_openai()`
   3. Validate the summary(ensure the summary is in schematic format). Functions:
-    - validate_summary_structure()
+     `validate_summary_structure()`
   4. Create pdf with the summary(will be allocate in a temporary storage in the cloud). Functions:
-    - create_pdf_from_summary()
+     `create_pdf_from_summary()`
   5. Upload the summary at the container(with a blob client). Functions:
-    - upload_pdf_to_blob()
+      `upload_pdf_to_blob()`
 
 #### (To be more effective run the function in a Linux OS, will be more robust)
 
