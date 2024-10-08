@@ -12,7 +12,7 @@
 #### This Azure Function, developed with Python, runs everytime that a file is uploaded in the container. The file is supposed to be in json format, with data about many documents(part of the same "matter") that have been performed by an OCR, like the following: 
 ```
 [
-  {
+   {
     "doc_id": 1,
     "content": [
       {
@@ -31,12 +31,13 @@
         ...//words of page 2
       },     //more pages
       {...}]
-    },
-    {
-      "doc_id": 2,
+   },
+   {
+    "doc_id": 2,
       ...      //content doc 2
-  },
+   },
     ...     //more documents
+ 
 ]
 ```
 
