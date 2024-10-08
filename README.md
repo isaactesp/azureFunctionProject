@@ -1,10 +1,13 @@
-<h1>Specification</h1>
+<h1>Azure Function</h1>
+
+<h2>Context</h2>
 
 #### We suppose that we have a suscription of Microsoft Cloud(Azure), in which we have the next resources:
 - Storage Account with a container.
 - Function App(where this project will be deployed).
 - OpenAI service.
 
+<h2>Specification</h2>
 #### This Azure Function, developed with Python, runs everytime that a file is uploaded in the container. The file is supposed to be in json format, with data about many documents(part of the same "matter") that have been performed by an OCR, like the following: 
 ```
 [
@@ -38,6 +41,7 @@
 
 #### The function will manage the blob(storage solution of Azure) of data and will create another blob in the same container. This second blob will contain a pdf with a summary of the data by points.
 
+<h2>Inner functions</h2>
 #### The Function of Azure(cleanerFunction()) is divided in 5 steps: 
   1. Clean the data(which includes connecting to the blob in which is the data). Functions:
     - filter_of_confidence()
